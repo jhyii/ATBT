@@ -5,7 +5,7 @@ n, length = map(int,input().split())
 
 wordlist = {}
 for i in range(n):
-    word = input()
+    word = input().strip() #개행문자 제거!!!!!!!!
     if len(word) >= length:
         if word in wordlist:
             wordlist[word] += 1
