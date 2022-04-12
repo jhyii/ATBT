@@ -1,17 +1,19 @@
 n, k = map(int, input().split())
 num = list(map(int,list(input())))
 
-max_index = num.index(max(num[:-(n-k-1)])) #가장 앞자리가 될 수의 인덱스
-if max_index <= k:
-    k -= max_index
-    num = num[max_index:] #첫번째자리 앞의 수들을 다 지웁니다
+result = []
 
-while(k>0): #더 지울 수가 남아있을 때만 실행
-    for j in range(len(num)-1):
-        if num[j] < num[j+1]: #자릿수가 큰 쪽부터 비교해서 앞자리 수가 뒷자리 수보다 작을 때 지웁니다
-            del num[j]
-            k -= 1
+check = k #마지막 출력 시 k 쓰기 때문에 다른 변수 선언해서 사용
+for i in range(n):
+    while check > 0 and result: #처음실행시 result가 비어있으므로
+        if result[-1] < num[i]: #result의 끝 수가 현재 비교하는 num의 값보다 작으면 pop
+            result.pop()
+            check -= 1
+        else:
             break
-          
-for i in num:
+
+
+    result.append(num[i]) 
+
+for i in result[:n-k]: #앞에서부터 n-k자릿수까지 출력한다
     print(i,end='')
